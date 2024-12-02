@@ -32,8 +32,12 @@ pipeline {
     stage('Deploying React.js container to Kubernetes') {
       steps {
         script {
-          kubernetesDeploy(configs: "deployment.yaml", 
-                                         "service.yaml")
+
+          withKubeCredentials(kubectlCredentials: [[caCertificate: '', clusterName: 'local-kind', contextName: 'kind-kind', credentialsId: 'kind-credentials', namespace: 'default', serverUrl: 'https://kind-control-plane:6443/']]) {
+            sh 'kubectl get nodes'
+          }
+          
+         // kubernetesDeploy(configs: "deployment.yaml", "service.yaml")
         }
       }
     }
