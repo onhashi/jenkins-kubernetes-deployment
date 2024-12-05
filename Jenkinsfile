@@ -1,4 +1,4 @@
-p peline {
+pipeline {
   environment {
     dockerimagename = "santanarulez/react-app"
     dockerImage = ""
