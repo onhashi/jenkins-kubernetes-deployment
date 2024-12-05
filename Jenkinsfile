@@ -1,4 +1,4 @@
-pipeline {
+p peline {
   environment {
     dockerimagename = "santanarulez/react-app"
     dockerImage = ""
@@ -35,6 +35,7 @@ pipeline {
 
           withKubeCredentials(kubectlCredentials: [[caCertificate: '', clusterName: 'local-kind', contextName: 'kind-kind', credentialsId: 'kind-credentials', namespace: 'default', serverUrl: 'https://kind-control-plane:6443/']]) {
             sh 'kubectl get nodes'
+            sh 'kubectl cluster-info'
           }
           
          // kubernetesDeploy(configs: "deployment.yaml", "service.yaml")
